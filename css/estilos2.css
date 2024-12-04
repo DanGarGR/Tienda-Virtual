@@ -1,0 +1,26 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #ffcc00;
+}
+
+.carousel-inner img {
+    height: 500px;
+    object-fit: cover;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffcc00 !important;
+}
+
+footer {
+    background-color: #333;
+}
+
+.AFD{
+    background-color: #000;
+}

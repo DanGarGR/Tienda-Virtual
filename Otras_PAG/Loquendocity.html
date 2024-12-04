@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tienda Virtual - Pokémon TCG</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/estilos3.css" />
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda Virtual Pokémon TCG</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="../index.html">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../Otras_PAG/Papulandia.html">Tienda</a>
+                </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="../Otras_PAG/Contacto.html">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <!-- Contenedor Principal -->
+    <section class="container mt-4" id="app">
+        <div class="row">
+            <!-- Lista de cartas -->
+            <div class="col-lg-8 col-md-12">
+                <h2 class="mb-4">Cartas Disponibles</h2>
+                <!-- Barra de búsqueda -->
+                <div class="mb-3">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Buscar por nombre o ID..."
+                        v-model="busqueda"
+                        @input="filtrarCartas"
+                    />
+                </div>
+                <!-- Barra de progreso -->
+                <div class="progress mb-3">
+                    <div
+                        class="progress-bar"
+                        role="progressbar"
+                        :style="{ width: progresoBusqueda + '%' }"
+                        :aria-valuenow="progresoBusqueda"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                    >
+                        {{ progresoBusqueda.toFixed(0) }}%
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div
+                        class="card col-md-4 p-3 bg-dark"
+                        v-for="carta in cartasFiltradas"
+                        :key="carta.id"
+                    >
+                        <img
+                            :src="carta.images.large"
+                            alt="Imagen de la carta"
+                            class="card-img-top"
+                            @click="irADetalle(carta.id)"
+                            style="cursor: pointer;"
+                        />
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ carta.name }}</h5>
+                            <p class="card-text">ID: {{ carta.id }}</p>
+                            <p class="card-text">Precio: ${{ carta.precio }}</p>
+                            <button
+                                class="btn btn-success"
+                                @click="agregarAlCarrito(carta)"
+                            >
+                                Añadir al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carrito de compras -->
+            <div class="carrito col-lg-4 col-md-8">
+                <div class="col-lg-12 col-md-12 text-dark">
+                    <h2 class="mb-4">Carrito</h2>
+                    <ul class="list-group">
+                        <li
+                            class="list-group-item d-flex justify-content-between align-items-center"
+                            v-for="(item, index) in carrito"
+                            :key="index"
+                        >
+                            <div>
+                                <strong>{{ item.name }} (x{{ item.cantidad }})</strong>
+                                <p class="mb-0">Precio: ${{ item.precio }}</p>
+                            </div>
+                            <button
+                                class="btn btn-danger btn-sm"
+                                @click="eliminarDelCarrito(index)"
+                            >
+                                Eliminar
+                            </button>
+                        </li>
+
+                        <li
+                            v-if="carrito.length === 0"
+                            class="list-group-item text-center"
+                        >
+                            No hay cartas en el carrito.
+                        </li>
+                    </ul>
+                    <div class="mt-3 text-white">
+                        <button 
+                        class="btn btn-primary btn-block mt-2" 
+                        :disabled="carrito.length === 0" 
+                        @click="irAFinalizacion"
+                    >
+                        Finalizar Compra
+                    </button>
+
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white p-3 mt-4">
+        <span class="h2">@2024 Tienda Virtual Pokémon TCG</span>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/vue3.js"></script>
+    <script src="../js/axios.min.js"></script>
+    <script src="../js/funciones3.js"></script>
+</body>
+</html>

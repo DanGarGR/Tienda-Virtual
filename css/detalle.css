@@ -1,0 +1,18 @@
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-img-top {
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.card-body {
+    text-align: center;
+}
+body{
+    color: aliceblue;
+    background-color: black;
+}

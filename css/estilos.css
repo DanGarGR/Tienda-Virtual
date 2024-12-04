@@ -1,0 +1,38 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #ffcc00;
+}
+
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card img {
+    height: 250px;
+    object-fit: contain;
+}
+
+.navbar-brand, .nav-link {
+    color: #ffcc00 !important;
+}
+
+input.form-control {
+    background-color: #000;
+    color: #000000;
+    border: 1px solid #ffcc00;
+}
+
+.list-group-item {
+    background-color: #000;
+    color: #fff;
+}
+
+footer {
+    background-color: #333;
+}
